@@ -1,10 +1,11 @@
 "use client"
 import { api } from "~/trpc/react";
-
+import { TU_Map } from "./_components/map";
 export default function Home() {
-  const hello = api.post.hello.useQuery({text: "world"})
 
   return (
-      <h1>{hello && hello.data?.greeting}</h1>
+    <div id="mapContainer">
+      <TU_Map/>
+    </div>
   );
 }
