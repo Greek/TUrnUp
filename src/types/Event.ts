@@ -27,11 +27,13 @@ export interface Event_Involved {
   name: string;
   description: string;
   imagePath: string;
-  location: string;
-  latitude: number;
-  longitute: number;
-  starts_on: Date;
-  ends_on: Date;
+  address: {
+    location: string;
+    latitude: number;
+    longitude: number;
+  };
+  startsOn: Date;
+  endsOn: Date;
   event_instances: EventInstance[];
 }
 

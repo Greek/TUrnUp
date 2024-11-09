@@ -1,9 +1,10 @@
-import {
+import type {
   Event_Involved,
   Event_TUEvents,
   EventResult,
-  EventSource,
 } from "~/types/Event";
+
+import { EventSource } from "~/types/Event";
 
 export function transformEvent(
   event: Partial<Event_TUEvents & Event_Involved>,
@@ -24,15 +25,16 @@ export function transformEvent(
   }
 
   if (source === EventSource.INVOLVED) {
+    console.log(event.address)
     return {
       id: event.id,
       name: event.name,
-      location: event.location,
       cover_image: `https://se-images.campuslabs.com/clink/images/${event.imagePath}`,
-      lat: event.latitude ? Number(event.latitude) : null,
-      long: event.longitute ? Number(event.longitute) : null,
-      start_date: event.starts_on,
-      end_date: event.ends_on,
+      lat: event.address?.latitude ? Number(event.address.latitude) : null,
+      long: event.address?.longitude ? Number(event.address.longitude) : null,
+      location: event.address?.location,
+      start_date: event.startsOn,
+      end_date: event.endsOn,
       event_source: source,
     } as EventResult;
   }
