@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function Nav_Bar() {
   return (
     <nav className="bg-white shadow-md">
@@ -9,18 +11,18 @@ export function Nav_Bar() {
 
         {/* Navigation buttons on the right */}
         <div className="flex items-center space-x-4">
-          <a
+          <Link
             href="/events"
             className="px-4 py-2 font-medium text-gray-700 transition-colors hover:text-[#ffcc00]"
           >
             Events
-          </a>
-          <a
+          </Link>
+          <Link
             href="/organizations"
             className="px-4 py-2 font-medium text-gray-700 transition-colors hover:text-[#ffcc00]"
           >
             Organizations
-          </a>
+          </Link>
         </div>
       </div>
     </nav>
