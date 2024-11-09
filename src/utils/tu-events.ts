@@ -15,8 +15,8 @@ export async function getTUEvents(): Promise<{
 
 export async function getTUEvent(id: string): Promise<Event_TUEvents> {
   return (
-    await axios.get<Event_TUEvents>(
+    await axios.get<{ event: Event_TUEvents }>(
       `https://events.towson.edu/api/2/events/${id}`,
     )
-  ).data;
+  ).data.event;
 }

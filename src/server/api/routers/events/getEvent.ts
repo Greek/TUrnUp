@@ -13,17 +13,17 @@ export const getEvent = publicProcedure
       source: z.enum(["events", "involved"]).optional(),
     }),
   )
-  .query(async ({ ctx, input }) => {
+  .query(async ({ input }) => {
     let event: EventResult | null | undefined = null;
-    if (input.source === EventSource.INVOLVED) {
+    if (input.source === "involved") {
       event = transformEvent(
-        (await getInvolvedEvent(input.id)),
+        await getInvolvedEvent(input.id),
         EventSource.INVOLVED,
       );
     } else {
-      const original = await getTUEvent(input.id);
-      event = transformEvent(original, EventSource.INVOLVED);
+      event = transformEvent(await getTUEvent(input.id), EventSource.EVENTS);
     }
 
+    console.log(event);
     return event;
   });

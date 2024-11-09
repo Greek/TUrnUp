@@ -13,6 +13,7 @@ import { Point } from "ol/geom";
 import { type Coordinate } from "ol/coordinate";
 import { Fill, Stroke, Style } from "ol/style";
 import CircleStyle from "ol/style/Circle";
+import * as events from "node:events";
 
 export function TU_Map({props}  : { props?: EventResult []} ) {
   const position = fromLonLat([-76.6106447, 39.39446]);
