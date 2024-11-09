@@ -9,10 +9,14 @@ export async function getTUEvents(): Promise<{
       await axios.get<{ events: { event: Event_TUEvents }[] }>(
         "https://events.towson.edu/api/2/events",
       )
-    ).data.events
+    ).data.events,
   };
 }
 
-export async function getTUEvent(id: number) {
-  return await axios.get(`https://events.towson.edu/api/2/events/${id}`);
+export async function getTUEvent(id: string): Promise<Event_TUEvents> {
+  return (
+    await axios.get<Event_TUEvents>(
+      `https://events.towson.edu/api/2/events/${id}`,
+    )
+  ).data;
 }

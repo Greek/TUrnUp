@@ -17,7 +17,7 @@ export const getAllEvents = publicProcedure
   .input(z.object({ limit: z.number() }).optional())
   .query(async ({}) => {
     const initialEventsData = await getTUEvents();
-    const initialInvolvedData = (await getInvolvedEvents(3)).data.value;
+    const initialInvolvedData = (await getInvolvedEvents(3));
 
     const eventsData = (await Promise.all(
       initialEventsData.events.map(async (entry) =>
