@@ -4,6 +4,7 @@ import React, { use } from "react";
 import { useSearchParams } from "next/navigation";
 import { api } from "~/trpc/react";
 import { Nav_Bar } from "~/app/_components/navbar";
+import { EventMap } from "~/app/_components/map_event";
 import { useRouter } from "next/navigation";
 import { Button } from "~/components/ui/button";
 
@@ -123,6 +124,7 @@ export default function EventPage({
                     <img
                       className="rounded-full border border-neutral-200"
                       src={org.data?.profilePicture}
+                      size={128}
                       width={128}
                       height={128}
                     />
@@ -151,9 +153,7 @@ export default function EventPage({
         {/* Map Placeholder */}
         <div className="mb-8 rounded-lg bg-white p-6 shadow-md">
           <h2 className="mb-4 text-xl font-bold">Location Map</h2>
-          <div className="flex h-[300px] w-full items-center justify-center rounded bg-gray-200">
-            <p className="text-gray-500">Map Component Luis</p>
-          </div>
+          <EventMap props={[event.long, event.lat]}></EventMap>
         </div>
       </main>
     </div>
