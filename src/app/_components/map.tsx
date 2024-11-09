@@ -27,4 +27,4 @@ export function TU_Map() {
       return () => mapObj.setTarget('');
     }, []);
 
-    return <div className ="map" ref={mapRef} />;}
+    return <div className ="h-[calc(60vh-4rem)] w-full border-2 border-gray-200 shadow-lg" ref={mapRef} />;}

@@ -1,10 +1,13 @@
 "use client"
 import { api } from "~/trpc/react";
 import { TU_Map } from "./_components/map";
+import { Nav_Bar} from "~/app/_components/navbar";
+
 export default function Home() {
 
   return (
-    <div id="mapContainer">
+    <div>
+      <Nav_Bar/>
       <TU_Map/>
     </div>
   );
