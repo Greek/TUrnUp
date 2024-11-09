@@ -113,7 +113,7 @@ export default function EventPage({
         {event.event_source === "involved" && (
           <div
             className="mb-8 rounded-lg bg-white p-6 shadow-md"
-            onClick={() => router.push(org.data?.originalUrl!)}
+            onClick={() => router.push(org.data?.originalUrl! as string)}
           >
             <h2 className="mb-4 text-xl font-bold">Organization</h2>
             <div className="flex flex-row items-center gap-4">
