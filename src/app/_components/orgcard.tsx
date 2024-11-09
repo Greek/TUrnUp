@@ -28,11 +28,13 @@ const OrgCard = ({ org }: OrgCardProps) => {
       {/* Image Section */}
       <div className="relative w-1/3 overflow-hidden">
         <div className="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-[#ffffff]/70" />
-        <img
-          src={org.profilePicture || "/api/placeholder/400/320"}
-          alt={org.name}
-          className="hover:scale-120 h-full w-full transform object-cover transition-transform duration-500 ease-in-out"
-        />
+        {
+          <img
+            src={org.profilePicture || "/tile.png"}
+            alt={org.name}
+            className="hover:scale-120 h-full w-full transform object-cover transition-transform duration-500 ease-in-out"
+          />
+        }
       </div>
     </div>
   );

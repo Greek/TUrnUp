@@ -86,7 +86,8 @@ export default function EventPage({
 
             <p className="text-lg text-gray-600">
               <span className="font-medium">Date & Time:</span>{" "}
-              {new Date(event.start_date).toDateString()}
+              {new Date(event.start_date).toDateString()}{" "}
+              {new Date(event.start_date).toLocaleTimeString()}
             </p>
 
             <p className="text-lg text-gray-600">
@@ -105,7 +106,14 @@ export default function EventPage({
               onClick={() => router.push(event.original_url)}
               variant={"outline"}
             >
-              <p>View on {event.event_source === "involved" ? <>Involved&#64;TU &rarr;</> : "TU Events"}</p>
+              <p>
+                View on{" "}
+                {event.event_source === "involved" ? (
+                  <>Involved&#64;TU &rarr;</>
+                ) : (
+                  "TU Events"
+                )}
+              </p>
             </Button>
           </span>
         </div>
@@ -134,7 +142,7 @@ export default function EventPage({
               )}
               <span className="ml-4">
                 <h3 className="font-semibold">{org?.data?.name}</h3>
-                <p className="hidden sm:block text-sm">{org.data?.summary}</p>
+                <p className="hidden text-sm sm:block">{org.data?.summary}</p>
               </span>
             </div>
             <hr className="my-4" />
