@@ -28,8 +28,11 @@ export interface Event_Involved {
   id: number;
   name: string;
   description: string;
+  organizationId: string;
   imagePath: string;
+  imageUrl?: string;
   address: {
+    name: string;
     location: string;
     latitude: number;
     longitude: number;
@@ -50,6 +53,7 @@ export interface EventResult {
   name: string;
   description?: string;
   original_url: string;
+  organization_id?: number | string;
   location: string;
   cover_image: string;
   lat: number;

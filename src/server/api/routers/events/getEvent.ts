@@ -1,4 +1,3 @@
-import axios from "axios";
 import { publicProcedure } from "../../trpc";
 import z from "zod";
 import { EventResult, EventSource, Event_Involved } from "~/types/Event";

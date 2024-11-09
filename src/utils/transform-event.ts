@@ -6,6 +6,19 @@ import type {
 
 import { EventSource } from "~/types/Event";
 
+export function transformOrg(org: any) {
+  return {
+    name: org.name,
+    shortName: org.shortName,
+    nameSortKey: org.nameSortKey,
+    originalUrl: `https://involved.towson.edu/organization/${org.websiteKey}`,
+    summary: org.summary,
+    profilePicture: org.profilePicture
+      ? `https://se-images.campuslabs.com/clink/images/${org.profilePicture}`
+      : null,
+  };
+}
+
 export function transformEvent(
   event: Partial<Event_TUEvents & Event_Involved>,
   source: EventSource,
@@ -31,11 +44,14 @@ export function transformEvent(
       id: event.id,
       name: event.name,
       description: event.description,
+      organization_id: event.organizationId,
       original_url: `https://involved.towson.edu/event/${event.id}`,
-      cover_image: `https://se-images.campuslabs.com/clink/images/${event.imagePath}`,
+      cover_image: event.imagePath
+        ? `https://se-images.campuslabs.com/clink/images/${event.imagePath}`
+        : event.imageUrl,
       lat: event.address?.latitude ? Number(event.address.latitude) : null,
       long: event.address?.longitude ? Number(event.address.longitude) : null,
-      location: event.address?.location,
+      location: event.address?.location ?? event.address?.name,
       start_date: event.startsOn,
       end_date: event.endsOn,
       event_source: source,
