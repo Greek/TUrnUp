@@ -124,7 +124,6 @@ export default function EventPage({
                     <img
                       className="rounded-full border border-neutral-200"
                       src={org.data?.profilePicture}
-                      size={128}
                       width={128}
                       height={128}
                     />
