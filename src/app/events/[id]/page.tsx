@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { api } from "~/trpc/react";
 import { Nav_Bar } from "~/app/_components/navbar";
 import { useRouter } from "next/navigation";
+import { Button } from "~/components/ui/button";
 
 export default function EventPage({
   params,
@@ -65,10 +66,23 @@ export default function EventPage({
         </div>
 
         {/* Event Details */}
-        <div className="mb-8 rounded-lg bg-white p-6 shadow-md">
+        <div className="mb-8 min-h-max rounded-lg bg-white p-6 shadow-md">
           <h1 className="mb-4 text-3xl font-bold">{event.name}</h1>
 
+          <hr className="my-4" />
+
           <div className="space-y-4">
+            <p className="text-lg text-gray-600">
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: event.description?.replaceAll(
+                    "&nbsp;",
+                    " ",
+                  ) as TrustedHTML,
+                }}
+              />
+            </p>
+
             <p className="text-lg text-gray-600">
               <span className="font-medium">Date & Time:</span>{" "}
               {new Date(event.start_date).toDateString()}
@@ -82,20 +96,32 @@ export default function EventPage({
               <span className="font-medium">Source:</span> {event.event_source}
             </p>
           </div>
+
+          <hr className="my-4" />
+
+          <span className="flex justify-end">
+            <Button
+              onClick={() => router.push(event.original_url)}
+              variant={"outline"}
+            >
+              <p>View on {event.event_source === "involved" ? <>Involved&#64;TU &rarr;</> : "TU Events"}</p>
+            </Button>
+          </span>
         </div>
 
         {/* Organization */}
         {event.event_source === "involved" && (
           <div
-            className="mb-8 rounded-lg bg-white p-6 shadow-md transition-all duration-500 ease-in-out hover:scale-105 hover:cursor-pointer"
+            className="mb-8 rounded-lg bg-white p-6 shadow-md"
             onClick={() => router.push(org.data?.originalUrl!)}
           >
             <h2 className="mb-4 text-xl font-bold">Organization</h2>
             <div className="flex flex-row items-center gap-4">
               {org.data?.profilePicture ? (
                 <>
-                  <span className="rounded-full border border-neutral-200">
+                  <span>
                     <img
+                      className="rounded-full border border-neutral-200"
                       src={org.data?.profilePicture}
                       width={128}
                       height={128}
@@ -110,8 +136,15 @@ export default function EventPage({
                 <p className="text-sm">{org.data?.summary}</p>
               </span>
             </div>
-            <hr className="my-4"/>
-            <span className="text-right"><p>View on Involved&#64;TU &rarr;</p></span>
+            <hr className="my-4" />
+            <span className="flex justify-end">
+              <Button
+                onClick={() => router.push(event.original_url)}
+                variant={"outline"}
+              >
+                <p>View on Involved&#64;TU &rarr;</p>
+              </Button>
+            </span>
           </div>
         )}
 
