@@ -6,6 +6,19 @@ import type {
 
 import { EventSource } from "~/types/Event";
 
+export function transformOrg(org: any) {
+  return {
+    name: org.name,
+    shortName: org.shortName,
+    nameSortKey: org.nameSortKey,
+    originalUrl: `https://involved.towson.edu/organization/${org.websiteKey}`,
+    summary: org.summary,
+    profilePicture: org.profilePicture
+      ? `https://se-images.campuslabs.com/clink/images/${org.profilePicture}`
+      : null,
+  };
+}
+
 export function transformEvent(
   event: Partial<Event_TUEvents & Event_Involved>,
   source: EventSource,
