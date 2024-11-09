@@ -1,8 +1,35 @@
-export interface Event {
-  id: string;
+export interface Geolocation {
+  latitude: number;
+  longitude: number;
+  street: string;
+  city: string;
+  state: string;
+  country: string;
+  zip: number;
+}
+
+export enum EventSource {
+  INVOLVED = "involved",
+  EVENTS = "events",
+}
+
+export interface Event_TUEvents {
+  id: number;
   title: string;
   location_name: string;
-  geo: unknown;
+  geo: Geolocation;
+  event_instances: EventInstance[];
+}
+
+export interface Event_Involved {
+  id: number;
+  name: string;
+  description: string;
+  location: string;
+  latitude: number;
+  longitute: number;
+  starts_on: Date;
+  ends_on: Date;
   event_instances: EventInstance[];
 }
 
@@ -17,7 +44,9 @@ export interface EventResult {
   id: number;
   name: string;
   location: string;
-  geo: string;
+  lat: number;
+  long: number;
   start_date: Date;
   end_date: Date;
+  event_source: EventSource;
 }

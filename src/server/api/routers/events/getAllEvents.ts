@@ -1,31 +1,35 @@
-import axios from "axios";
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { publicProcedure } from "../../trpc";
 import z from "zod";
-import { Event, EventResult } from "~/types/Event";
+import { transformEvent } from "~/utils/transform-event";
+import { getTUEvents } from "~/utils/tu-events";
+import { EventSource } from "~/types/Event";
+import type {
+  Event_Involved,
+  Event_TUEvents,
+  EventResult,
+} from "~/types/Event";
+import { getInvolvedEvents } from "~/utils/involved-events";
 
 export const getAllEvents = publicProcedure
   .input(z.object({ limit: z.number() }).optional())
   .query(async ({}) => {
-    const dataFromEventsTU = (
-      await axios.get("https://events.towson.edu/api/2/events")
-    ).data.events;
+    const initialEventsData = (await getTUEvents()).data.events;
+    const initialInvolvedData = (await getInvolvedEvents(3)).data.value;
 
-    return await Promise.all(
-      dataFromEventsTU.map(async (entry: any) => {
-        const { event }: { event: Event } = (
-          await axios.get(
-            `https://events.towson.edu/api/2/events/${entry.event.id}`,
-          )
-        ).data;
-
-        return {
-          id: event.id,
-          name: event.title,
-          location: event.location_name,
-          geo: event.geo,
-          start_date: event.event_instances[0]?.event_instance.start,
-          end_date: event.event_instances[0]?.event_instance.end,
-        };
-      }),
+    const eventsData = await Promise.all(
+      initialEventsData.map(async (entry: { event: Event_TUEvents }) =>
+        transformEvent(entry.event, EventSource.EVENTS),
+      ),
     ) as EventResult[];
+
+    const involvedData = await Promise.all(
+      initialInvolvedData.map(async (entry: Event_Involved) =>
+        transformEvent(entry, EventSource.INVOLVED),
+      ),
+    ) as EventResult[];
+
+    return [...eventsData, ...involvedData];
   });
