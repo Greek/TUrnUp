@@ -25,7 +25,7 @@ export default function Home() {
     >
       <div className="relative">
         <Nav_Bar />
-        <TU_Map />
+        <TU_Map props={events}/>
 
         <main className="flex flex-col items-center px-4 py-8">
           {isLoading ? (
