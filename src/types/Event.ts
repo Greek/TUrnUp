@@ -16,9 +16,11 @@ export enum EventSource {
 export interface Event_TUEvents {
   id: number;
   title: string;
-  location_name: string;
+  description: string;
+  urlname: string;
   photo_url: string;
   geo: Geolocation;
+  location_name: string;
   event_instances: EventInstance[];
 }
 
@@ -34,7 +36,6 @@ export interface Event_Involved {
   };
   startsOn: Date;
   endsOn: Date;
-  event_instances: EventInstance[];
 }
 
 export interface EventInstance {
@@ -47,6 +48,8 @@ export interface EventInstance {
 export interface EventResult {
   id: number;
   name: string;
+  description?: string;
+  original_url: string;
   location: string;
   cover_image: string;
   lat: number;
