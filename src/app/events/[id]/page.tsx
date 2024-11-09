@@ -65,7 +65,7 @@ export default function EventPage({
           <div className="space-y-4">
             <p className="text-lg text-gray-600">
               <span className="font-medium">Date & Time:</span>{" "}
-              {new Date(event.start_date).toLocaleString()}
+              {new Date(event.start_date).toDateString()}
             </p>
 
             <p className="text-lg text-gray-600">
