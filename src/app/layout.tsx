@@ -6,7 +6,7 @@ import { type Metadata } from "next";
 import { TRPCReactProvider } from "~/trpc/react";
 
 export const metadata: Metadata = {
-  title: "TUrnUP",
+  title: "TUrnUp",
   description: "find all the on-campus events near you",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };

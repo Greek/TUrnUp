@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "TUrn UP",
-    short_name: "TUrn UP",
+    name: "TUrnUp",
+    short_name: "TUrnUp",
     description: "find all the on-campus events near you",
     start_url: "/",
     display: "standalone",
