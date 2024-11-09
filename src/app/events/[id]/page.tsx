@@ -4,7 +4,7 @@ import React, { use } from "react";
 import { useSearchParams } from "next/navigation";
 import { api } from "~/trpc/react";
 import { Nav_Bar } from "~/app/_components/navbar";
-
+import { EventMap } from "~/app/_components/map_event";
 export default function EventPage({
   params,
 }: {
@@ -81,9 +81,7 @@ export default function EventPage({
         {/* Map Placeholder */}
         <div className="rounded-lg bg-white p-6 shadow-md">
           <h2 className="mb-4 text-xl font-bold">Location Map</h2>
-          <div className="flex h-[300px] w-full items-center justify-center rounded bg-gray-200">
-            <p className="text-gray-500">Map Component Luis</p>
-          </div>
+          <EventMap props={[event.long, event.lat]}></EventMap>
         </div>
       </main>
     </div>
