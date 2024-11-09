@@ -32,7 +32,7 @@ export function transformEvent(
       name: event.name,
       description: event.description,
       original_url: `https://involved.towson.edu/event/${event.id}`,
-      cover_image: `https://se-images.campuslabs.com/clink/images/${event.imagePath}`,
+      cover_image: event.imagePath ? `https://se-images.campuslabs.com/clink/images/${event.imagePath}` : event.imageUrl,
       lat: event.address?.latitude ? Number(event.address.latitude) : null,
       long: event.address?.longitude ? Number(event.address.longitude) : null,
       location: event.address?.location ?? event.address?.name,
