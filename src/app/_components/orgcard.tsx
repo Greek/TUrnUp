@@ -1,9 +1,9 @@
 import React from "react";
 import { useRouter } from "next/navigation";
-import type { Org_Involved } from "~/types/Organization";
+import type { Org_Involved, OrgResult } from "~/types/Organization";
 
 interface OrgCardProps {
-  org: Org_Involved;
+  org: Partial<OrgResult & Org_Involved>;
 }
 
 const OrgCard = ({ org }: OrgCardProps) => {
