@@ -16,20 +16,20 @@ import { getInvolvedEvents } from "~/utils/involved-events";
 export const getAllEvents = publicProcedure
   .input(z.object({ limit: z.number() }).optional())
   .query(async ({}) => {
-    const initialEventsData = (await getTUEvents()).data.events;
+    const initialEventsData = await getTUEvents();
     const initialInvolvedData = (await getInvolvedEvents(3)).data.value;
 
-    const eventsData = await Promise.all(
-      initialEventsData.map(async (entry: { event: Event_TUEvents }) =>
+    const eventsData = (await Promise.all(
+      initialEventsData.events.map(async (entry) =>
         transformEvent(entry.event, EventSource.EVENTS),
       ),
-    ) as EventResult[];
+    )) as EventResult[];
 
-    const involvedData = await Promise.all(
+    const involvedData = (await Promise.all(
       initialInvolvedData.map(async (entry: Event_Involved) =>
         transformEvent(entry, EventSource.INVOLVED),
       ),
-    ) as EventResult[];
+    )) as EventResult[];
 
     return [...eventsData, ...involvedData];
   });
