@@ -7,7 +7,7 @@ export async function getInvolvedEvents(
 ): Promise<Event_Involved[]> {
   return (
     await axios.get<{ value: Event_Involved[] }>(
-      "https://involved.towson.edu/api/discovery/event/search?take=9",
+      "https://involved.towson.edu/api/discovery/event/search?take=35",
     )
   ).data.value;
 }
