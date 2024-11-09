@@ -7,7 +7,6 @@ export interface Org_Involved {
   summary: string;
   profilePicture: string;
 }
-
 export interface OrgResult {
   name: any;
   shortName: any;
@@ -16,3 +15,4 @@ export interface OrgResult {
   summary: any;
   profilePicture: string | null;
 }
+
