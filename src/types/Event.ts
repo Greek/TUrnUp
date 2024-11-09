@@ -17,6 +17,7 @@ export interface Event_TUEvents {
   id: number;
   title: string;
   location_name: string;
+  photo_url: string;
   geo: Geolocation;
   event_instances: EventInstance[];
 }
@@ -25,6 +26,7 @@ export interface Event_Involved {
   id: number;
   name: string;
   description: string;
+  imagePath: string;
   location: string;
   latitude: number;
   longitute: number;
@@ -44,6 +46,7 @@ export interface EventResult {
   id: number;
   name: string;
   location: string;
+  cover_image: string;
   lat: number;
   long: number;
   start_date: Date;
