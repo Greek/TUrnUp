@@ -11,7 +11,7 @@ export async function getInvolvedEvents(
   ).data.value;
 }
 
-export async function getInvolvedEvent(id: string): Promise<Event_Involved> {
+export async function getInvolvedEvent(id: string | number): Promise<Event_Involved> {
   return (
     await axios.get<Event_Involved>(
       `https://involved.towson.edu/api/discovery/event/${id}`,
