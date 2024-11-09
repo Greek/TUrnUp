@@ -17,6 +17,7 @@ export interface Event_TUEvents {
   id: number;
   title: string;
   description: string;
+  urlname: string;
   photo_url: string;
   geo: Geolocation;
   location_name: string;
@@ -48,6 +49,7 @@ export interface EventResult {
   id: number;
   name: string;
   description?: string;
+  original_url: string;
   location: string;
   cover_image: string;
   lat: number;
