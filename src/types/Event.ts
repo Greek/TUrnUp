@@ -30,6 +30,7 @@ export interface Event_Involved {
   description: string;
   imagePath: string;
   address: {
+    name: string;
     location: string;
     latitude: number;
     longitude: number;

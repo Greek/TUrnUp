@@ -35,7 +35,7 @@ export function transformEvent(
       cover_image: `https://se-images.campuslabs.com/clink/images/${event.imagePath}`,
       lat: event.address?.latitude ? Number(event.address.latitude) : null,
       long: event.address?.longitude ? Number(event.address.longitude) : null,
-      location: event.address?.location,
+      location: event.address?.location ?? event.address?.name,
       start_date: event.startsOn,
       end_date: event.endsOn,
       event_source: source,
