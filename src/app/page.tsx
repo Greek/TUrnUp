@@ -32,7 +32,7 @@ export default function Home() {
             <div className="text-center">Loading events...</div>
           ) : (
             <>
-              <div className="grid w-[95%] max-w-[620px] grid-cols-2 gap-4">
+              <div className="grid w-[95%] max-w-[620px] grid-rows-2 sm:grid-cols-2 gap-4">
                 {events
                   ?.slice(0, displayCount)
                   .map((event) => (

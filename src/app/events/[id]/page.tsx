@@ -4,9 +4,10 @@ import React, { use } from "react";
 import { useSearchParams } from "next/navigation";
 import { api } from "~/trpc/react";
 import { Nav_Bar } from "~/app/_components/navbar";
+import { EventMap } from "~/app/_components/map_event";
 import { useRouter } from "next/navigation";
 import { Button } from "~/components/ui/button";
-import { EventMap } from "~/app/_components/map_event";
+
 export default function EventPage({
   params,
 }: {
@@ -116,13 +117,14 @@ export default function EventPage({
             onClick={() => router.push(org.data?.originalUrl! as string)}
           >
             <h2 className="mb-4 text-xl font-bold">Organization</h2>
-            <div className="flex flex-row items-center gap-4">
+            <div className="flex flex-row items-center">
               {org.data?.profilePicture ? (
                 <>
                   <span>
                     <img
                       className="rounded-full border border-neutral-200"
                       src={org.data?.profilePicture}
+                      size={128}
                       width={128}
                       height={128}
                     />
@@ -131,9 +133,9 @@ export default function EventPage({
               ) : (
                 <p>{org.data?.nameSortKey}</p>
               )}
-              <span>
+              <span className="ml-4">
                 <h3 className="font-semibold">{org?.data?.name}</h3>
-                <p className="text-sm">{org.data?.summary}</p>
+                <p className="hidden sm:block text-sm">{org.data?.summary}</p>
               </span>
             </div>
             <hr className="my-4" />
