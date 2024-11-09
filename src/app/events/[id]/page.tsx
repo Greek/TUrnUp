@@ -4,6 +4,7 @@ import React, { use } from "react";
 import { useSearchParams } from "next/navigation";
 import { api } from "~/trpc/react";
 import { Nav_Bar } from "~/app/_components/navbar";
+import { useRouter } from "next/navigation";
 
 export default function EventPage({
   params,
@@ -13,11 +14,16 @@ export default function EventPage({
   const resolvedParams = use(params);
   const searchParams = useSearchParams();
   const source = searchParams.get("source");
+  const router = useRouter();
 
   const { data: event, isLoading } = api.events.getEvent.useQuery({
     id: resolvedParams.id,
     source: source as "events" | "involved" | undefined,
   });
+
+  const org = api.orgs.getOrganization.useQuery(
+    event?.organization_id as number,
+  );
 
   if (isLoading) {
     return (
@@ -78,8 +84,39 @@ export default function EventPage({
           </div>
         </div>
 
+        {/* Organization */}
+        {event.event_source === "involved" && (
+          <div
+            className="mb-8 rounded-lg bg-white p-6 shadow-md transition-all duration-500 ease-in-out hover:scale-105 hover:cursor-pointer"
+            onClick={() => router.push(org.data?.originalUrl!)}
+          >
+            <h2 className="mb-4 text-xl font-bold">Organization</h2>
+            <div className="flex flex-row items-center gap-4">
+              {org.data?.profilePicture ? (
+                <>
+                  <span className="rounded-full border border-neutral-200">
+                    <img
+                      src={org.data?.profilePicture}
+                      width={128}
+                      height={128}
+                    />
+                  </span>
+                </>
+              ) : (
+                <p>{org.data?.nameSortKey}</p>
+              )}
+              <span>
+                <h3 className="font-semibold">{org?.data?.name}</h3>
+                <p className="text-sm">{org.data?.summary}</p>
+              </span>
+            </div>
+            <hr className="my-4"/>
+            <span className="text-right"><p>View on Involved&#64;TU &rarr;</p></span>
+          </div>
+        )}
+
         {/* Map Placeholder */}
-        <div className="rounded-lg bg-white p-6 shadow-md">
+        <div className="mb-8 rounded-lg bg-white p-6 shadow-md">
           <h2 className="mb-4 text-xl font-bold">Location Map</h2>
           <div className="flex h-[300px] w-full items-center justify-center rounded bg-gray-200">
             <p className="text-gray-500">Map Component Luis</p>

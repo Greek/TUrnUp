@@ -44,6 +44,7 @@ export function transformEvent(
       id: event.id,
       name: event.name,
       description: event.description,
+      organization_id: event.organizationId,
       original_url: `https://involved.towson.edu/event/${event.id}`,
       cover_image: event.imagePath
         ? `https://se-images.campuslabs.com/clink/images/${event.imagePath}`
