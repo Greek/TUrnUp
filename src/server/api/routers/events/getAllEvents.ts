@@ -12,14 +12,15 @@ import { getInvolvedEvent, getInvolvedEvents } from "~/utils/involved-events";
 export const getAllEvents = publicProcedure
   .input(z.object({ limit: z.number() }).optional())
   .query(async ({}) => {
-    const initialEventsData = await getTUEvents();
+    // const initialEventsData = await getTUEvents();
     const initialInvolvedData = await getInvolvedEvents();
 
-    const eventsData = (await Promise.all(
-      initialEventsData.events.map(async (entry) =>
-        transformEvent(entry.event, EventSource.EVENTS),
-      ),
-    )) as EventResult[];
+    // events.towson gave up
+    // const eventsData = (await Promise.all(
+    //   initialEventsData.events.map(async (entry) =>
+    //     transformEvent(entry.event, EventSource.EVENTS),
+    //   ),
+    // )) as EventResult[];
 
     const involvedData = (await Promise.all(
       initialInvolvedData.map(async (entry: Event_Involved) => {
@@ -31,5 +32,5 @@ export const getAllEvents = publicProcedure
       }),
     )) as EventResult[];
 
-    return [...eventsData, ...involvedData];
+    return [...involvedData];
   });
