@@ -7,7 +7,7 @@ export async function getTUEvents(): Promise<{
   return {
     events: (
       await axios.get<{ events: { event: Event_TUEvents }[] }>(
-        "https://events.towson.edu/api/2/events",
+        "https://events.towson.edu/api/2/events?days=20",
       )
     ).data.events,
   };
