@@ -1,29 +1,38 @@
-# Create T3 App
+# TUrnUp
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+TUrnUp is a progressive web app that consolidates events from [Events at Towson](events)
+and [Involved@TU](involved) into one reliable source, allowing students to get up-to-date
+information on the events around Towson University.
 
-## What's next? How do I make an app with this?
+TUrnUp can be accessed *right now* at <https://turnup.ndy.sh>.
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## How to Run Locally
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+TUrnUp is straightforward to get up and running, and it does not require any external API keys
+or environment variables to work.
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+1. Clone the repository
+```bash
+$ git clone https://github.com/Greek/tu-maker-fest-events-app
+```
+2. Run `pnpm install`
+3. Run `pnpm build`
+4. Finally, start the application `pnpm start`
 
-## Learn More
+## How it Works
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+TUrnUp is a Next.JS app based off the [Create T3 App stack](https://create.t3.gg/) that pulls data 
+from the [Involved@TU](involved) API and the [Events at Towson](events) API. 
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+These APIs are powered by [Anthology's Campus Engage](involved-api-docs) (Involved@TU) 
+and [Localist](events-api-docs) (Events at Towson)
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+## Credits
 
-## How do I deploy this?
+Andreas P. ([@Greek](https://github.com/Greek)) (Backend), Luis G. ([@curlyLasagna](https://github.com/curlyLasagna)) (Frontend),
+Kenneth E. ([@cdetk](https://github.com/cdetk)) (Frontend, Design)
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+[involved]: https://involved.towson.edu
+[events]: https://events.towson.edu
+[involved-api-docs]: https://involved.towson.edu/engage/api/docs/#introduction
+[events-api-docs]: https://developer.localist.com/doc/api
