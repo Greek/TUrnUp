@@ -1,7 +1,7 @@
 # TUrnUp
 
-TUrnUp is a progressive web app that consolidates events from [Events at Towson](events)
-and [Involved@TU](involved) into one reliable source, allowing students to get up-to-date
+TUrnUp is a progressive web app that consolidates events from [Events at Towson][events]
+and [Involved@TU][involved] into one reliable source, allowing students to get up-to-date
 information on the events around Towson University.
 
 TUrnUp can be accessed *right now* at <https://turnup.ndy.sh>.
@@ -22,10 +22,10 @@ $ git clone https://github.com/Greek/tu-maker-fest-events-app
 ## How it Works
 
 TUrnUp is a Next.JS app based off the [Create T3 App stack](https://create.t3.gg/) that pulls data 
-from the [Involved@TU](involved) API and the [Events at Towson](events) API. 
+from the [Involved@TU][involved] API and the [Events at Towson][events] API. 
 
-These APIs are powered by [Anthology's Campus Engage](involved-api-docs) (Involved@TU) 
-and [Localist](events-api-docs) (Events at Towson)
+These APIs are powered by [Anthology's Campus Engage][involved-api-docs] (Involved@TU) 
+and [Localist][events-api-docs] (Events at Towson)
 
 ## Credits
 
