@@ -64,7 +64,7 @@ export default function OrganizationsPage() {
             <div className="flex w-[95%] max-w-[900px] flex-col gap-4">
               {filteredOrgs
                 ?.slice(0, displayCount)
-                .map((org) => <OrgCard key={generateKey(org)} org={org} />)}
+                .map((org) => <OrgCard key={generateKey(org) + (Math.random() * 20)} org={org} />)}
             </div>
 
             {filteredOrgs && filteredOrgs.length > displayCount && (
