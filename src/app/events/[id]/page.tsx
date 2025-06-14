@@ -7,6 +7,57 @@ import { Nav_Bar } from "~/app/_components/navbar";
 import { EventMap } from "~/app/_components/map_event";
 import { useRouter } from "next/navigation";
 import { Button } from "~/components/ui/button";
+import { EventSource } from "~/types/Event";
+import type { OrgResult } from "~/types/Organization";
+
+interface OrganizationSectionProps {
+  org?: OrgResult;
+  eventUrl: string;
+  router: ReturnType<typeof useRouter>;
+}
+
+function OrganizationSection({ org, eventUrl, router }: OrganizationSectionProps) {
+  if (!org) return null;
+  
+  return (
+    <div
+      className="mb-8 rounded-lg bg-white p-6 shadow-md"
+      onClick={() => router.push(org.originalUrl)}
+    >
+      <h2 className="mb-4 text-xl font-bold">Organization</h2>
+      <div className="flex flex-row items-center">
+        {org.profilePicture ? (
+          <>
+            <span>
+              <img
+                className="rounded-full border border-neutral-200"
+                src={org.profilePicture}
+                alt={`${org.name} profile picture`}
+                width={128}
+                height={128}
+              />
+            </span>
+          </>
+        ) : (
+          <p>{org.nameSortKey}</p>
+        )}
+        <span className="ml-4">
+          <h3 className="font-semibold">{org.name}</h3>
+          <p className="hidden text-sm sm:block">{org.summary}</p>
+        </span>
+      </div>
+      <hr className="my-4" />
+      <span className="flex justify-end">
+        <Button
+          onClick={() => router.push(eventUrl)}
+          variant={"outline"}
+        >
+          <p>View on Involved&#64;TU &rarr;</p>
+        </Button>
+      </span>
+    </div>
+  );
+}
 
 export default function EventPage({
   params,
@@ -18,16 +69,18 @@ export default function EventPage({
   const source = searchParams.get("source");
   const router = useRouter();
 
-  const { data: event, isLoading } = api.events.getEvent.useQuery({
-    id: resolvedParams.id,
-    source: source as "events" | "involved" | undefined,
-  });
+  const { data: event, isLoading: isLoadingEvent } =
+    api.events.getEvent.useQuery({
+      id: resolvedParams.id,
+      source: source as "events" | "involved" | undefined,
+    });
 
-  const org = api.orgs.getOrganization.useQuery(
-    event?.organization_id as number,
-  );
+  const { data: org } =
+    api.orgs.getOrganization.useQuery(event?.organization_id as number, {
+      enabled: !!event?.organization_id,
+    });
 
-  if (isLoading) {
+  if (isLoadingEvent) {
     return (
       <div className="min-h-screen bg-gray-50">
         <Nav_Bar />
@@ -108,7 +161,7 @@ export default function EventPage({
             >
               <p>
                 View on{" "}
-                {event.event_source === "involved" ? (
+                {event.event_source === EventSource.INVOLVED ? (
                   <>Involved&#64;TU &rarr;</>
                 ) : (
                   "TU Events"
@@ -119,43 +172,8 @@ export default function EventPage({
         </div>
 
         {/* Organization */}
-        {event.event_source === "involved" && (
-          <div
-            className="mb-8 rounded-lg bg-white p-6 shadow-md"
-            onClick={() => router.push(org.data?.originalUrl! as string)}
-          >
-            <h2 className="mb-4 text-xl font-bold">Organization</h2>
-            <div className="flex flex-row items-center">
-              {org.data?.profilePicture ? (
-                <>
-                  <span>
-                    <img
-                      className="rounded-full border border-neutral-200"
-                      src={org.data?.profilePicture}
-                      alt={`${org.data.name} profile picture`}
-                      width={128}
-                      height={128}
-                    />
-                  </span>
-                </>
-              ) : (
-                <p>{org.data?.nameSortKey}</p>
-              )}
-              <span className="ml-4">
-                <h3 className="font-semibold">{org?.data?.name}</h3>
-                <p className="hidden text-sm sm:block">{org.data?.summary}</p>
-              </span>
-            </div>
-            <hr className="my-4" />
-            <span className="flex justify-end">
-              <Button
-                onClick={() => router.push(event.original_url)}
-                variant={"outline"}
-              >
-                <p>View on Involved&#64;TU &rarr;</p>
-              </Button>
-            </span>
-          </div>
+        {event.event_source === EventSource.INVOLVED && (
+          <OrganizationSection org={org} eventUrl={event.original_url} router={router} />
         )}
 
         {/* Map Placeholder */}

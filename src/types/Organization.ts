@@ -13,6 +13,6 @@ export interface OrgResult {
   nameSortKey: string;
   originalUrl: string;
   summary: string;
-  profilePicture?: string;
+  profilePicture: string | null;
 }
 
