@@ -57,6 +57,6 @@ export function TU_Map({props}  : { props?: EventResult []} ) {
       mapObj.setTarget(mapRef.current);
 
       return () => mapObj.setTarget('');
-    }, [props]);
+    }, [props, position]);
 
     return <div className ="h-[calc(60vh-4rem)] w-full border-2 border-gray-200 shadow-lg" ref={mapRef} />;}

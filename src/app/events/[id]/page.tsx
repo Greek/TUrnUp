@@ -61,7 +61,7 @@ export default function EventPage({
         <div className="relative mb-8 h-[400px] w-full overflow-hidden rounded-lg">
           <img
             src={event.cover_image || "/api/placeholder/400/320"}
-            alt={event.name}
+            alt={`${event.name} cover image`}
             className="h-full w-full object-cover"
           />
         </div>
@@ -132,6 +132,7 @@ export default function EventPage({
                     <img
                       className="rounded-full border border-neutral-200"
                       src={org.data?.profilePicture}
+                      alt={`${org.data.name} profile picture`}
                       width={128}
                       height={128}
                     />

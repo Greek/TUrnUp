@@ -1,17 +1,19 @@
 import React from "react";
-import { useRouter } from "next/navigation";
 import type { Org_Involved, OrgResult } from "~/types/Organization";
+import Image from "next/image";
 
 interface OrgCardProps {
   org: Partial<OrgResult & Org_Involved>;
 }
 
 const OrgCard = ({ org }: OrgCardProps) => {
-  const router = useRouter();
-
   const handleClick = () => {
     window.open(`${org.originalUrl}`, "_blank");
   };
+
+  if (!org) {
+    return null;
+  }
 
   return (
     <div
@@ -31,7 +33,7 @@ const OrgCard = ({ org }: OrgCardProps) => {
         {
           <img
             src={org.profilePicture || "/tile.png"}
-            alt={org.name}
+            alt={org.name!}
             className="hover:scale-120 h-full w-full transform object-cover transition-transform duration-500 ease-in-out"
           />
         }

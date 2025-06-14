@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { publicProcedure } from "../../trpc";
 import z from "zod";
 import { transformEvent } from "~/utils/transform-event";

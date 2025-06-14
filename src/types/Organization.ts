@@ -8,11 +8,11 @@ export interface Org_Involved {
   profilePicture: string;
 }
 export interface OrgResult {
-  name: any;
-  shortName: any;
-  nameSortKey: any;
+  name: string;
+  shortName: string;
+  nameSortKey: string;
   originalUrl: string;
-  summary: any;
-  profilePicture: string | null;
+  summary: string;
+  profilePicture?: string;
 }
 

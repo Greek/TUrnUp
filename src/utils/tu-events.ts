@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Event_Involved, Event_TUEvents } from "~/types/Event";
+import type { Event_TUEvents } from "~/types/Event";
 
 export async function getTUEvents(): Promise<{
   events: { event: Event_TUEvents }[];

@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { publicProcedure } from "../../trpc";
-import { getInvolvedOrg, getInvolvedOrgs } from "~/utils/involved-events";
+import { getInvolvedOrg } from "~/utils/involved-events";
 import { transformOrg } from "~/utils/transform-event";
 
 export const getOrganization = publicProcedure

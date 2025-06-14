@@ -1,7 +1,7 @@
 import { publicProcedure } from "../../trpc";
 import z from "zod";
-import { EventResult, EventSource, Event_Involved } from "~/types/Event";
-import { getInvolvedEvent, getInvolvedEvents } from "~/utils/involved-events";
+import { type EventResult, EventSource } from "~/types/Event";
+import { getInvolvedEvent } from "~/utils/involved-events";
 import { transformEvent } from "~/utils/transform-event";
 import { getTUEvent } from "~/utils/tu-events";
 

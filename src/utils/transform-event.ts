@@ -5,8 +5,9 @@ import type {
 } from "~/types/Event";
 
 import { EventSource } from "~/types/Event";
+import type { Org_Involved } from "~/types/Organization";
 
-export function transformOrg(org: any) {
+export function transformOrg(org: Org_Involved) {
   return {
     name: org.name,
     shortName: org.shortName,
