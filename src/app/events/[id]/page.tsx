@@ -90,7 +90,6 @@ export default function EventPage({
   if (isLoadingEvent) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <Nav_Bar />
         <div className="mt-8 text-center">Loading event details...</div>
       </div>
     );
@@ -99,7 +98,6 @@ export default function EventPage({
   if (!event) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <Nav_Bar />
         <div className="mt-8 text-center">Event not found</div>
       </div>
     );
@@ -114,8 +112,6 @@ export default function EventPage({
         backgroundSize: "auto",
       }}
     >
-      <Nav_Bar />
-
       <main className="mx-auto max-w-4xl px-4 py-8">
         {/* Hero Image */}
         <div className="relative mb-8 h-[400px] w-full overflow-hidden rounded-lg">

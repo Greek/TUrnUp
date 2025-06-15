@@ -40,8 +40,6 @@ export default function OrganizationsPage() {
         backgroundSize: "650px",
       }}
     >
-      <Nav_Bar />
-
       {/* Search Section */}
       <div className="mb-8 w-full bg-white p-4 shadow-md">
         <div className="mx-auto max-w-[900px]">

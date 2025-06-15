@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { api } from "~/trpc/react";
 import { TU_Map } from "./_components/map";
-import { Nav_Bar } from "~/app/_components/navbar";
 import EventCard from "~/app/_components/eventcard";
 
 export default function Home() {
@@ -24,7 +23,6 @@ export default function Home() {
       }}
     >
       <div className="relative">
-        <Nav_Bar />
         <TU_Map props={events}/>
 
         <main className="flex flex-col items-center px-4 py-8">

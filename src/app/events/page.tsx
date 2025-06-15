@@ -36,8 +36,6 @@ export default function EventsPage() {
         backgroundSize: "650px",
       }}
     >
-      <Nav_Bar />
-
       {/* Search and Filter Section */}
       <div className="mb-8 w-full bg-white p-4 shadow-md">
         <div className="mx-auto flex max-w-[900px] flex-col gap-4">
