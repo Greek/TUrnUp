@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { api } from "~/trpc/react";
-import { Nav_Bar } from "~/app/_components/navbar";
 import OrgCard from "~/app/_components/orgcard";
 import type { Org_Involved } from "~/types/Organization";
 

@@ -32,8 +32,8 @@ const OrgCard = ({ org }: OrgCardProps) => {
         <div className="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-[#ffffff]/70" />
         {
           <img
-            src={org.profilePicture || "/tile.png"}
-            alt={org.name!}
+            src={org.profilePicture ?? "/tile.png"}
+            alt={org.name}
             className="hover:scale-120 h-full w-full transform object-cover transition-transform duration-500 ease-in-out"
           />
         }

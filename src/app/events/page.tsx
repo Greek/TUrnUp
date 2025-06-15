@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { api } from "~/trpc/react";
-import { Nav_Bar } from "~/app/_components/navbar";
 import EventCard from "~/app/_components/eventcard";
 
 export default function EventsPage() {

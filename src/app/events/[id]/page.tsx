@@ -3,7 +3,6 @@
 import React, { use } from "react";
 import { useSearchParams } from "next/navigation";
 import { api } from "~/trpc/react";
-import { Nav_Bar } from "~/app/_components/navbar";
 import { EventMap } from "~/app/_components/map_event";
 import { useRouter } from "next/navigation";
 import { Button } from "~/components/ui/button";
