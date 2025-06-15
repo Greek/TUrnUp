@@ -15,4 +15,3 @@ export interface OrgResult {
   summary: string;
   profilePicture: string | null;
 }
-

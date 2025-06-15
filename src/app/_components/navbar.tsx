@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function Nav_Bar() {
   return (
-    <nav className="bg-white shadow-md z-10">
+    <nav className="z-10 bg-white shadow-md">
       <div className="flex w-full items-center justify-between px-6 py-3">
         {/* Logo on the left */}
         <div className="flex items-center">

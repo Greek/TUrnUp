@@ -23,14 +23,14 @@ export default function Home() {
       }}
     >
       <div className="relative">
-        <TU_Map props={events}/>
+        <TU_Map props={events} />
 
         <main className="flex flex-col items-center px-4 py-8">
           {isLoading ? (
             <div className="text-center">Loading events...</div>
           ) : (
             <>
-              <div className="grid w-[95%] max-w-[620px] grid-rows-2 sm:grid-cols-2 gap-4">
+              <div className="grid w-[95%] max-w-[620px] grid-rows-2 gap-4 sm:grid-cols-2">
                 {events
                   ?.slice(0, displayCount)
                   .map((event) => (

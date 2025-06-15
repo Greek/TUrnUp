@@ -21,14 +21,13 @@ function OrganizationSection({
   eventUrl,
   router,
 }: OrganizationSectionProps) {
-  const imageWrapperClass = "min-h-16 min-w-16 rounded-full border border-neutral-200 object-cover";
+  const imageWrapperClass =
+    "min-h-16 min-w-16 rounded-full border border-neutral-200 object-cover";
 
   if (!org) return null;
 
   return (
-    <div
-      className="mb-8 rounded-lg bg-white p-6 shadow-md"
-    >
+    <div className="mb-8 rounded-lg bg-white p-6 shadow-md">
       <h2 className="mb-4 text-xl font-bold">Organization</h2>
       <div className="flex flex-row items-center">
         {org.profilePicture ? (
@@ -44,13 +43,15 @@ function OrganizationSection({
             </span>
           </>
         ) : (
-          <span className={`${imageWrapperClass} flex justify-center items-center`}>
+          <span
+            className={`${imageWrapperClass} flex items-center justify-center`}
+          >
             <p>{org.nameSortKey}</p>
           </span>
         )}
         <span className="ml-4">
-          <h3 className="font-semibold text-lg">{org.name}</h3>
-          <p className="text-xs sm:text-base sm:block">{org.summary}</p>
+          <h3 className="text-lg font-semibold">{org.name}</h3>
+          <p className="text-xs sm:block sm:text-base">{org.summary}</p>
         </span>
       </div>
       <hr className="my-4" />

@@ -2,9 +2,7 @@ import axios from "axios";
 import type { Event_Involved } from "~/types/Event";
 import type { Org_Involved } from "~/types/Organization";
 
-export async function getInvolvedEvents(
-  limit = 15,
-): Promise<Event_Involved[]> {
+export async function getInvolvedEvents(limit = 15): Promise<Event_Involved[]> {
   return (
     await axios.get<{ value: Event_Involved[] }>(
       `https://involved.towson.edu/api/discovery/event/search?take=${limit}`,
