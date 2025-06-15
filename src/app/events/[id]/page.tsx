@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "~/components/ui/button";
 import { EventSource } from "~/types/Event";
 import type { OrgResult } from "~/types/Organization";
+import Image from "next/image";
 
 interface OrganizationSectionProps {
   org?: OrgResult;
@@ -16,42 +17,46 @@ interface OrganizationSectionProps {
   router: ReturnType<typeof useRouter>;
 }
 
-function OrganizationSection({ org, eventUrl, router }: OrganizationSectionProps) {
+function OrganizationSection({
+  org,
+  eventUrl,
+  router,
+}: OrganizationSectionProps) {
+  const imageWrapperClass = "min-h-16 min-w-16 rounded-full border border-neutral-200 object-cover";
+
   if (!org) return null;
-  
+
   return (
     <div
       className="mb-8 rounded-lg bg-white p-6 shadow-md"
-      onClick={() => router.push(org.originalUrl)}
     >
       <h2 className="mb-4 text-xl font-bold">Organization</h2>
       <div className="flex flex-row items-center">
         {org.profilePicture ? (
           <>
             <span>
-              <img
-                className="rounded-full border border-neutral-200"
+              <Image
+                className={imageWrapperClass}
                 src={org.profilePicture}
                 alt={`${org.name} profile picture`}
-                width={128}
-                height={128}
+                width={80}
+                height={80}
               />
             </span>
           </>
         ) : (
-          <p>{org.nameSortKey}</p>
+          <span className={`${imageWrapperClass} flex justify-center items-center`}>
+            <p>{org.nameSortKey}</p>
+          </span>
         )}
         <span className="ml-4">
-          <h3 className="font-semibold">{org.name}</h3>
-          <p className="hidden text-sm sm:block">{org.summary}</p>
+          <h3 className="font-semibold text-lg">{org.name}</h3>
+          <p className="text-xs sm:text-base sm:block">{org.summary}</p>
         </span>
       </div>
       <hr className="my-4" />
       <span className="flex justify-end">
-        <Button
-          onClick={() => router.push(eventUrl)}
-          variant={"outline"}
-        >
+        <Button onClick={() => router.push(eventUrl)} variant={"outline"}>
           <p>View on Involved&#64;TU &rarr;</p>
         </Button>
       </span>
@@ -75,10 +80,12 @@ export default function EventPage({
       source: source as "events" | "involved" | undefined,
     });
 
-  const { data: org } =
-    api.orgs.getOrganization.useQuery(event?.organization_id as number, {
+  const { data: org } = api.orgs.getOrganization.useQuery(
+    event?.organization_id as number,
+    {
       enabled: !!event?.organization_id,
-    });
+    },
+  );
 
   if (isLoadingEvent) {
     return (
@@ -112,10 +119,11 @@ export default function EventPage({
       <main className="mx-auto max-w-4xl px-4 py-8">
         {/* Hero Image */}
         <div className="relative mb-8 h-[400px] w-full overflow-hidden rounded-lg">
-          <img
+          <Image
             src={event.cover_image || "/api/placeholder/400/320"}
             alt={`${event.name} cover image`}
             className="h-full w-full object-cover"
+            fill={true}
           />
         </div>
 
@@ -173,7 +181,11 @@ export default function EventPage({
 
         {/* Organization */}
         {event.event_source === EventSource.INVOLVED && (
-          <OrganizationSection org={org} eventUrl={event.original_url} router={router} />
+          <OrganizationSection
+            org={org}
+            eventUrl={event.original_url}
+            router={router}
+          />
         )}
 
         {/* Map Placeholder */}

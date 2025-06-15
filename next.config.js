@@ -10,6 +10,18 @@ const nextConfig = {
   swcMinify: true,            // Enable SWC minification for improved performance
   compiler: {
     removeConsole: process.env.NODE_ENV !== "development"     // Remove console.log in production
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "**"
+      },
+      {
+        protocol: "https",
+        hostname: "**"
+      }
+    ]
   }
 };
 
