@@ -55,10 +55,10 @@ export interface EventResult {
   original_url: string;
   organization_id?: number | string;
   location: string;
-  cover_image: string;
-  lat: number;
-  long: number;
-  start_date: Date;
-  end_date: Date;
+  cover_image?: string;
+  lat?: number | null;
+  long?: number | null;
+  start_date?: Date | null;
+  end_date?: Date | null;
   event_source: EventSource;
 }

@@ -1,8 +1,11 @@
 import { publicProcedure } from "../../trpc";
 import z from "zod";
-import { type EventResult, EventSource } from "~/types/Event";
+import { type EventResult } from "~/types/Event";
 import { getInvolvedEvent } from "~/utils/involved-events";
-import { transformEvent } from "~/utils/transform-event";
+import {
+  transformInvolvedEvent,
+  transformTUEvent,
+} from "~/utils/transform-event";
 import { getTUEvent } from "~/utils/tu-events";
 
 export const getEvent = publicProcedure
@@ -15,14 +18,10 @@ export const getEvent = publicProcedure
   .query(async ({ input }) => {
     let event: EventResult | null | undefined = null;
     if (input.source === "involved") {
-      event = transformEvent(
-        await getInvolvedEvent(input.id),
-        EventSource.INVOLVED,
-      );
+      event = transformInvolvedEvent(await getInvolvedEvent(input.id));
     } else {
-      event = transformEvent(await getTUEvent(input.id), EventSource.EVENTS);
+      event = transformTUEvent(await getTUEvent(input.id));
     }
 
-    console.log(event);
     return event;
   });
