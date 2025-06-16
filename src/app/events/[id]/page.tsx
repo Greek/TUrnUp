@@ -144,7 +144,7 @@ export default function EventPage({
             <p className="text-lg text-gray-600">
               <span className="font-medium">Date & Time:</span>{" "}
               {new Date(event.start_date).toDateString()}{" "}
-              {new Date(event.start_date).toLocaleTimeString()}
+              {new Date(event.end_date).toLocaleTimeString()}
             </p>
 
             <p className="text-lg text-gray-600">
@@ -185,10 +185,12 @@ export default function EventPage({
         )}
 
         {/* Map Placeholder */}
-        <div className="mb-8 rounded-lg bg-white p-6 shadow-md">
-          <h2 className="mb-4 text-xl font-bold">Location Map</h2>
-          <EventMap props={[event.long, event.lat]}></EventMap>
-        </div>
+        {event.long && event.lat && (
+          <div className="mb-8 rounded-lg bg-white p-6 shadow-md">
+            <h2 className="mb-4 text-xl font-bold">Location Map</h2>
+            <EventMap props={[event.long, event.lat]}></EventMap>
+          </div>
+        )}
       </main>
     </div>
   );

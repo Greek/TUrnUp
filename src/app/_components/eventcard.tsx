@@ -36,7 +36,7 @@ const EventCard = ({ event, variant }: EventCardProps) => {
         <div className="relative h-48 w-full overflow-hidden">
           <div className="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-[#ffcc00]/70" />
           <Image
-            src={event.cover_image || "/api/placeholder/400/320"}
+            src={event.cover_image ?? "/api/placeholder/400/320"}
             alt={event.name}
             width={500}
             height={500}
@@ -96,7 +96,7 @@ const EventCard = ({ event, variant }: EventCardProps) => {
       <div className="relative w-1/2 overflow-hidden">
         <div className="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-[#ffcc00]/70" />
         <img
-          src={event.cover_image || "/api/placeholder/400/320"}
+          src={event.cover_image ?? "/api/placeholder/400/320"}
           alt={event.name}
           className="hover:scale-120 h-full w-full transform object-cover transition-transform duration-500 ease-in-out"
         />

@@ -58,7 +58,7 @@ export interface EventResult {
   cover_image?: string;
   lat?: number | null;
   long?: number | null;
-  start_date?: Date | null;
-  end_date?: Date | null;
+  start_date: Date;
+  end_date: Date;
   event_source: EventSource;
 }

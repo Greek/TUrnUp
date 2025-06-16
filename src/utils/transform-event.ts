@@ -30,8 +30,8 @@ export function transformTUEvent(event: Event_TUEvents) {
     cover_image: event.photo_url,
     lat: event.geo?.latitude ? Number(event.geo.latitude) : null,
     long: event.geo?.longitude ? Number(event.geo.longitude) : null,
-    start_date: event.event_instances?.[0]?.event_instance.start ?? null,
-    end_date: event.event_instances?.[0]?.event_instance.end ?? null,
+    start_date: event.event_instances[0]!.event_instance.start,
+    end_date: event.event_instances[0]!.event_instance.end,
     event_source: EventSource.EVENTS,
   };
 }
