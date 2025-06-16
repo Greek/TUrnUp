@@ -1,6 +1,6 @@
-import { eventsRouter } from "~/server/api/routers/events/events";
+import eventsRouter from "~/server/api/routers/events";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
-import { orgsRouter } from "./routers/orgs/orgs";
+import orgsRouter from "./routers/orgs";
 
 /**
  * This is the primary router for your server.
