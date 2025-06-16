@@ -1,6 +1,5 @@
 import { publicProcedure } from "../../trpc";
 import z from "zod";
-import { transformEvent } from "~/utils/transform-event";
 import {
   transformInvolvedEvent,
   transformTUEvent,
@@ -31,5 +30,19 @@ export const getAllEvents = publicProcedure
       }),
     );
 
-    return [...eventsData, ...involvedData];
+    const finalData = [...involvedData, ...eventsData]
+      .filter(
+        (e) =>
+          e.start_date &&
+          new Date(e.start_date).getFullYear() === new Date().getFullYear(),
+      )
+      .sort((a, b) => {
+        if (a.start_date && b.start_date)
+          return (
+            Number(new Date(a.start_date)) - Number(new Date(b.start_date))
+          );
+        else return -1;
+      });
+
+    return finalData;
   });
