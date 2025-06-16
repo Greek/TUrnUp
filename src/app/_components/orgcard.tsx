@@ -18,7 +18,7 @@ const OrgCard = ({ org }: OrgCardProps) => {
   return (
     <div
       onClick={handleClick}
-      className="flex h-1/2 transform cursor-pointer overflow-hidden rounded-lg bg-white shadow-md transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-lg"
+      className="flex max-h-72 transform cursor-pointer overflow-hidden rounded-lg bg-white shadow-md transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-lg"
     >
       {/* Content Section */}
       <div className="flex flex-1 flex-col justify-center p-4">
