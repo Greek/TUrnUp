@@ -1,6 +1,7 @@
 import React from "react";
 import type { EventResult } from "~/types/Event";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 interface EventCardProps {
   event: EventResult;
@@ -34,9 +35,11 @@ const EventCard = ({ event, variant }: EventCardProps) => {
         {/* Rest of variant 1 content stays the same */}
         <div className="relative h-48 w-full overflow-hidden">
           <div className="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-[#ffcc00]/70" />
-          <img
+          <Image
             src={event.cover_image || "/api/placeholder/400/320"}
             alt={event.name}
+            width={500}
+            height={500}
             className="hover:scale-120 h-full w-full transform object-cover transition-transform duration-500 ease-in-out"
           />
         </div>
@@ -66,7 +69,7 @@ const EventCard = ({ event, variant }: EventCardProps) => {
   return (
     <div
       onClick={handleClick}
-      className="flex w-full transform cursor-pointer overflow-hidden rounded-lg bg-white shadow-md transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-lg"
+      className="flex max-h-72 w-full transform cursor-pointer overflow-hidden rounded-lg bg-white shadow-md transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-lg"
     >
       {/* Rest of variant 2 content stays the same */}
       <div className="flex flex-1 flex-col justify-between p-4">

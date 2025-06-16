@@ -36,7 +36,7 @@ const OrgCard = ({ org }: OrgCardProps) => {
             alt={`${org.name} profile picture`}
             width={500}
             height={500}
-            className="hover:scale-120 max-w-72 transform object-cover transition-transform duration-500 ease-in-out"
+            className="hover:scale-120 h-full w-full transform object-cover transition-transform duration-500 ease-in-out"
           />
         }
       </div>
