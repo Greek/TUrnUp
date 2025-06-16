@@ -22,6 +22,7 @@ export function TU_Map({ props }: { props?: EventResult[] }) {
     if (!mapRef.current) return;
     const events = props ?? [];
     const coordinates: Coordinate[] = events.map((event) => {
+      if (!event.long || !event.lat) return position;
       return fromLonLat([event.long, event.lat]);
     });
     const features = coordinates.map((coordinate) => {
