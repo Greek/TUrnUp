@@ -18,7 +18,7 @@ const OrgCard = ({ org }: OrgCardProps) => {
   return (
     <div
       onClick={handleClick}
-      className="flex w-full transform cursor-pointer overflow-hidden rounded-lg bg-white shadow-md transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-lg"
+      className="flex h-1/2 transform cursor-pointer overflow-hidden rounded-lg bg-white shadow-md transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-lg"
     >
       {/* Content Section */}
       <div className="flex flex-1 flex-col justify-center p-4">
@@ -28,13 +28,15 @@ const OrgCard = ({ org }: OrgCardProps) => {
       </div>
 
       {/* Image Section */}
-      <div className="relative w-1/3 overflow-hidden">
+      <div className="relative flex w-1/3 items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-[#ffffff]/70" />
         {
-          <img
+          <Image
             src={org.profilePicture ?? "/tile.png"}
-            alt={org.name}
-            className="hover:scale-120 h-full w-full transform object-cover transition-transform duration-500 ease-in-out"
+            alt={`${org.name} profile picture`}
+            width={500}
+            height={500}
+            className="hover:scale-120 max-w-72 transform object-cover transition-transform duration-500 ease-in-out"
           />
         }
       </div>
