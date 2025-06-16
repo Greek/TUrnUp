@@ -116,7 +116,7 @@ export default function EventPage({
         {/* Hero Image */}
         <div className="relative mb-8 h-[400px] w-full overflow-hidden rounded-lg">
           <Image
-            src={event.cover_image || "/api/placeholder/400/320"}
+            src={event.cover_image ?? "/api/placeholder/400/320"}
             alt={`${event.name} cover image`}
             className="h-full w-full object-cover"
             fill={true}
