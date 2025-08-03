@@ -24,9 +24,7 @@ export function createRedisInstance(): Redis {
 }
 
 export function getRedisInstance(): Redis {
-  if (!redisInstance) {
-    redisInstance = createRedisInstance();
-  }
+  redisInstance ??= createRedisInstance();
   return redisInstance;
 }
 
@@ -38,8 +36,7 @@ export function clearRedisInstance(): void {
 }
 
 // For backward compatibility
-export const redis =
-  env.NODE_ENV === "test" ? undefined : getRedisInstance();
+export const redis = env.NODE_ENV === "test" ? undefined : getRedisInstance();
 
 export async function checkForRedisConnection() {
   // Don't check if we're in a test env.
