@@ -103,6 +103,17 @@ export default function EventPage({
     );
   }
 
+  const start_time = new Date(event.start_date).toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
+  const end_time = new Date(event.end_date).toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
+
   return (
     <div
       className="min-h-screen bg-gray-50"
@@ -143,8 +154,9 @@ export default function EventPage({
 
             <p className="text-lg text-gray-600">
               <span className="font-medium">Date & Time:</span>{" "}
-              {new Date(event.start_date).toDateString()}{" "}
-              {new Date(event.end_date).toLocaleTimeString()}
+              {new Date(event.start_date).toDateString()} {start_time}
+              {"–"}
+              {end_time}
             </p>
 
             <p className="text-lg text-gray-600">
