@@ -1,0 +1,3 @@
+[submodule "src/server/scheduler"]
+	path = src/server/scheduler
+	url = git@github.com:Greek/turnup-scheduler.git
