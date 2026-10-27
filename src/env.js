@@ -9,6 +9,8 @@ export const env = createEnv({
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
     REDIS_URL: z.string().url(),
+    SCHEDULER_GRPC_ADDRESS: z.string().min(1),
+    SCHEDULER_AUTH_TOKEN: z.string().min(1).optional(),
   },
 
   /**
@@ -27,6 +29,8 @@ export const env = createEnv({
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     REDIS_URL: process.env.REDIS_URL,
+    SCHEDULER_GRPC_ADDRESS: process.env.SCHEDULER_GRPC_ADDRESS,
+    SCHEDULER_AUTH_TOKEN: process.env.SCHEDULER_AUTH_TOKEN,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**

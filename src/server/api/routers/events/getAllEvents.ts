@@ -1,28 +1,25 @@
 import { publicProcedure } from "../../trpc";
 import z from "zod";
 import type { EventResult } from "~/types/Event";
-import { getRedisInstance } from "~/lib/redis";
 import { TRPCError } from "@trpc/server";
+import { getSchedulerSnapshot } from "~/server/schedulerClient";
 
 export const getAllEvents = publicProcedure
   .input(z.object({ limit: z.number() }).optional())
-  .query(async ({}) => {
-    const currDate = new Date().toISOString().slice(0, 10).replace(/-/g, "");
-    const redis = getRedisInstance();
-
-    let redisValue: string;
+  .query(async () => {
+    let snapshot: string;
     try {
-      redisValue = (await redis.get(`snapshot:${currDate}:towson`)) ?? "";
+      snapshot = await getSchedulerSnapshot("towson");
     } catch (err: unknown) {
       console.error(err);
       throw new TRPCError({
         message: "Failed to get all events",
-        code: "NOT_FOUND",
+        code: "INTERNAL_SERVER_ERROR",
       });
     }
 
     let data: EventResult[] = (
-      redisValue ? JSON.parse(redisValue) : []
+      snapshot ? JSON.parse(snapshot) : []
     ) as EventResult[];
 
     data = data
