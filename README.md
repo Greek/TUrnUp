@@ -8,8 +8,8 @@ TUrnUp can be accessed *right now* at <https://turnup.ndy.sh>.
 
 ## How to Run Locally
 
-TUrnUp is straightforward to get up and running, and it does not require any external API keys
-or environment variables to work.
+The app requires a Redis URL and a running scheduler service. Copy `.env.example` to `.env`
+and set `REDIS_URL`, `SCHEDULER_GRPC_ADDRESS`, and `SCHEDULER_AUTH_TOKEN`.
 
 1. Clone the repository
 ```bash
@@ -26,6 +26,11 @@ from the [Involved@TU][involved] API and the [Events at Towson][events] API.
 
 These APIs are powered by [Anthology's Campus Engage][involved-api-docs] (Involved@TU) 
 and [Localist][events-api-docs] (Events at Towson)
+
+## Updating the Scheduler gRPC Client
+
+With `protoc` installed and the scheduler submodule checked out, run `pnpm proto:generate` to
+regenerate the TypeScript gRPC client from `scheduler.proto`.
 
 ## Credits
 

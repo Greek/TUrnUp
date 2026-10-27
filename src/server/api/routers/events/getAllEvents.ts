@@ -2,14 +2,18 @@ import { publicProcedure } from "../../trpc";
 import z from "zod";
 import type { EventResult } from "~/types/Event";
 import { TRPCError } from "@trpc/server";
-import { getSchedulerSnapshot } from "~/server/schedulerClient";
+import { getSchedulerClient } from "~/server/schedulerClient";
+import { env } from "~/env";
+import { Metadata } from "nice-grpc";
 
 export const getAllEvents = publicProcedure
   .input(z.object({ limit: z.number() }).optional())
   .query(async () => {
-    let snapshot: string;
+    let call;
     try {
-      snapshot = await getSchedulerSnapshot("towson");
+      const client = getSchedulerClient()
+      call = await client.getSnapshot({ namespace: "towson", overwrite: false },
+          { metadata: Metadata().set("authorization", env.SCHEDULER_AUTH_TOKEN!) });
     } catch (err: unknown) {
       console.error(err);
       throw new TRPCError({
@@ -19,7 +23,7 @@ export const getAllEvents = publicProcedure
     }
 
     let data: EventResult[] = (
-      snapshot ? JSON.parse(snapshot) : []
+      call ? JSON.parse(call.snapshot) : []
     ) as EventResult[];
 
     data = data
